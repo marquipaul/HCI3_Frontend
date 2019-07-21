@@ -1,37 +1,44 @@
 <template>
-  <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn flat>
-        <span class="mr-2" v-scroll-to="'#bags'">Bags</span>
-      </v-btn>
-            <v-btn flat>
-        <span class="mr-2" v-scroll-to="'#shirt'">Shirts</span>
-      </v-btn>
-    </v-toolbar>
-
+  <v-app :dark="dark">
+    <toolbar v-if="!adminLoggedin && this.$route.path != '/admin/login'"></toolbar>
+    <toolbar-admin v-else-if="adminLoggedin && this.$route.path != '/admin/login'"></toolbar-admin>
     <v-content>
-      <hello-world/>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
+import bus from './bus_main.js'
+import Toolbar from './components/navigation/Toolbar.vue'
+import ToolbarAdmin from './components/admin/navigation/Toolbar.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Toolbar,
+    ToolbarAdmin
   },
   data () {
     return {
-      //
+      dark: false
     }
-  }
+  },
+  created () {
+      var vm = this
+      bus.$on('darkMode', function (value) {
+          if (!vm.dark) {
+              vm.dark = value
+          } else {
+              vm.dark = false
+          }
+            
+      })
+      //console.log(this.$route.path, this.$route.fullPath)
+    },
+    computed: {
+      adminLoggedin() {
+        return this.$store.getters.loggedIn
+      }
+    }
 }
 </script>
