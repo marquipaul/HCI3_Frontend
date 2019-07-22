@@ -22,19 +22,19 @@ Vue.use(VueScrollTo, {
   y: true
 })
 
-import Echo from 'laravel-echo'
+// import Echo from 'laravel-echo'
 
-window.Pusher = require('pusher-js');
+// window.Pusher = require('pusher-js');
 
-window.Echo = new Echo({
-     broadcaster: 'pusher',
-     key: 'PAULIKAY',
-     cluster: 'mt1',
-     //encrypted: true
-     wsHost: '127.0.0.1',
-     wsPort: 6001,
-     disableStats: true,
-});
+// window.Echo = new Echo({
+//      broadcaster: 'pusher',
+//      key: 'PAULIKAY',
+//      cluster: 'mt1',
+//      //encrypted: true
+//      wsHost: '127.0.0.1',
+//      wsPort: 6001,
+//      disableStats: true,
+// });
 
 
 axios.defaults.baseURL = 'http://hci3-project.test/'

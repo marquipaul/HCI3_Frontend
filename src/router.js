@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Products from './components/ProductsView.vue'
+import ProductPeview from './components/ProductsView.vue'
 import Login from './components/authentication/Login.vue'
+import Products from './components/admin/Product.vue'
 
 Vue.use(Router)
 
@@ -15,9 +16,14 @@ export default new Router({
       component: Login
     },
     {
+      path: '/admin/products',
+      name: 'admin-products',
+      component: Products
+    },
+    {
       path: '/',
       name: 'products-view',
-      component: Products
+      component: ProductPeview
     },
   ]
 })

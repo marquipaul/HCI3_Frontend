@@ -2,7 +2,7 @@
   <v-app :dark="dark">
     <toolbar v-if="!adminLoggedin && this.$route.path != '/admin/login'"></toolbar>
     <toolbar-admin v-else-if="adminLoggedin && this.$route.path != '/admin/login'"></toolbar-admin>
-    <v-content>
+    <v-content class="ma-4">
       <router-view></router-view>
     </v-content>
   </v-app>

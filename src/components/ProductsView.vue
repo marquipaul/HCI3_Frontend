@@ -89,7 +89,7 @@ import axios from 'axios';
             //     console.log(e.message);
             // })
 
-            axios.get('/api/product?order_by=name&sort_by=desc&rowsPerPage=5&page=1')
+            axios.get('/api/product/shop-view')
                 .then((response) => {
                     console.log(response)
                 })

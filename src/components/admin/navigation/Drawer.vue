@@ -33,8 +33,8 @@ import bus from '../../../bus_main.js'
       return {
         drawer: false,
         items: [
-          { title: 'Dashboard', icon: 'dashboard' , route: '/dashboard'},
-          { title: 'Products', icon: 'shopping_cart' , route: '/products'},
+          { title: 'Dashboard', icon: 'dashboard' , route: '/admin/dashboard'},
+          { title: 'Products', icon: 'shopping_cart' , route: '/admin/products'},
         ],
       }
     },
