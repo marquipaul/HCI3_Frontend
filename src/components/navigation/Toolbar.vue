@@ -21,7 +21,7 @@
                 <v-btn flat v-scroll-to="'#laptops'">
                     <span>Laptops</span>
                 </v-btn>
-                <v-btn flat v-scroll-to="'#shirt'">
+                <v-btn flat v-scroll-to="'#peripherals'">
                     <span>PERIPHERALS</span>
                 </v-btn>
             </div>

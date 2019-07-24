@@ -4,14 +4,14 @@
           <v-flex lg12 md12 sm12>
             <h1 class="mt-3 headline">Business Solutions</h1>
           </v-flex>
-            <v-flex lg4 md6 sm6 xs12 px-3 my-3 v-for="item in business" :key="item.product_name">
+            <v-flex lg4 md6 sm6 xs12 px-3 my-3 v-for="item in business" :key="item.name">
                 <v-hover>
                     <v-card slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
-                        <v-img :src="item.img" aspect-ratio="2"></v-img>
+                        <v-img :src="item.full_image" aspect-ratio="2"></v-img>
                         <v-card-title primary-title>
                             <div>
-                                <h3 class="headline mb-0">{{item.product_name}}</h3>
-                                <div> {{item.product_details}} </div>
+                                <h3 class="headline mb-0">{{item.name}}</h3>
+                                <div> {{item.description}} </div>
                             </div>
                         </v-card-title>
                         <v-card-text>
@@ -26,44 +26,67 @@
           <v-flex lg12 md12 sm12>
             <h1 class="mt-3 headline">Components</h1>
           </v-flex>
-            <v-flex lg4 md6 sm6 xs12 px-3 my-3>
+            <v-flex lg4 md6 sm6 xs12 px-3 my-3 v-for="item in components" :key="item.name">
                 <v-hover>
-                    <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 20 : 10}`">
-                        <v-img src="https://cdn.vuetifyjs.com/images/cards/desert.jpg" aspect-ratio="2"></v-img>
-                        <v-card-title>
-                            <h1 class="headline">Mouse</h1>
+                    <v-card slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
+                        <v-img :src="item.full_image" aspect-ratio="2"></v-img>
+                        <v-card-title primary-title>
+                            <div>
+                                <h3 class="headline mb-0">{{item.name}}</h3>
+                                <div> {{item.description}} </div>
+                            </div>
                         </v-card-title>
-                    </v-card>
-                </v-hover>
-            </v-flex>
-            <v-flex lg4 md6 sm6 xs12 px-3 my-3>             
-                <v-hover>
-                    <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 20 : 10}`">
-                        <v-card-title>
-                            Mouse
-                        </v-card-title>
-                    </v-card>
-                </v-hover>
-            </v-flex>
-            <v-flex lg4 md6 sm6 xs12 px-3 my-3>
-                <v-hover>
-                    <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 20 : 10}`">
-                        <v-card-title>
-                            Mouse
-                        </v-card-title>
-                    </v-card>
-                </v-hover>
-            </v-flex>
-            <v-flex lg4 md6 sm6 xs12 px-3 my-3>             
-                <v-hover>
-                    <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 20 : 10}`">
-                        <v-card-title>
-                            Mouse
-                        </v-card-title>
+                        <v-card-text>
+                            ₱{{item.price}}
+                        </v-card-text>
                     </v-card>
                 </v-hover>
             </v-flex>
       </v-layout>
+
+      <v-layout row wrap id="laptops" color="green" class="mt-2">
+          <v-flex lg12 md12 sm12>
+            <h1 class="mt-3 headline">Laptops</h1>
+          </v-flex>
+            <v-flex lg4 md6 sm6 xs12 px-3 my-3 v-for="item in laptops" :key="item.name">
+                <v-hover>
+                    <v-card slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
+                        <v-img :src="item.full_image" aspect-ratio="2"></v-img>
+                        <v-card-title primary-title>
+                            <div>
+                                <h3 class="headline mb-0">{{item.name}}</h3>
+                                <div> {{item.description}} </div>
+                            </div>
+                        </v-card-title>
+                        <v-card-text>
+                            ₱{{item.price}}
+                        </v-card-text>
+                    </v-card>
+                </v-hover>
+            </v-flex>
+      </v-layout>  
+
+        <v-layout row wrap id="peripherals" color="green" class="mt-2">
+          <v-flex lg12 md12 sm12>
+            <h1 class="mt-3 headline">Peripherals</h1>
+          </v-flex>
+            <v-flex lg4 md6 sm6 xs12 px-3 my-3 v-for="item in peripherals" :key="item.name">
+                <v-hover>
+                    <v-card slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
+                        <v-img :src="item.full_image" aspect-ratio="2"></v-img>
+                        <v-card-title primary-title>
+                            <div>
+                                <h3 class="headline mb-0">{{item.name}}</h3>
+                                <div> {{item.description}} </div>
+                            </div>
+                        </v-card-title>
+                        <v-card-text>
+                            ₱{{item.price}}
+                        </v-card-text>
+                    </v-card>
+                </v-hover>
+            </v-flex>
+      </v-layout>        
   </v-container>
 </template>
 
@@ -72,15 +95,10 @@ import axios from 'axios';
   export default {
       data() {
           return {
-              business: [
-                  {
-                      img: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
-                      product_name: 'Hikvision Turbo HD Surveillance Kit with 2TB Seagate SkyHawk (8CH4D4B-2MP-2TB)',
-                      product_details: 'Hikvision Turbo HD Surveillance Kit with 2TB Seagate SkyHawk (8CH4D4B-2MP-2TB) Hikvision Turbo HD Surveillance Kit with 2TB Seagate SkyHawk (8CH4D4B-2MP-2TB)',
-                      price: '15,500.00',
-                      category: 'Business Solution',
-                  }
-              ]
+                business: [],
+                components: [],
+                laptops: [],
+                peripherals: []
           }
       },
       mounted() {
@@ -92,6 +110,10 @@ import axios from 'axios';
             axios.get('/api/product/shop-view')
                 .then((response) => {
                     console.log(response)
+                    this.business = response.data.category_1
+                    this.components = response.data.category_2
+                    this.laptops = response.data.category_3
+                    this.peripherals = response.data.category_4
                 })
       }
   }
