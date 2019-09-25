@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ProductPeview from './components/ProductsView.vue'
+import ProductPreview from './components/ProductsView.vue'
+import ProductView from './components/pages/ViewProduct.vue'
+
+
 import Login from './components/authentication/Login.vue'
 import Products from './components/admin/Product.vue'
 
@@ -18,12 +21,20 @@ export default new Router({
     {
       path: '/admin/products',
       name: 'admin-products',
-      component: Products
+      component: Products,
+      meta: {
+        requiresAuth: true,
+      }
     },
     {
       path: '/',
       name: 'products-view',
-      component: ProductPeview
+      component: ProductPreview
+    },
+    {
+      path: '/product/preview',
+      name: 'view-product',
+      component: ProductView
     },
   ]
 })

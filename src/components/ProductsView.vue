@@ -4,15 +4,21 @@
           <v-flex lg12 md12 sm12>
             <h1 class="mt-3 headline">Business Solutions</h1>
           </v-flex>
-            <v-flex lg4 md6 sm6 xs12 px-3 my-3 v-for="item in business" :key="item.name">
+            <v-flex lg4 md6 sm6 xs12 px-3 my-3 v-for="item in business" :key="item.name" >
                 <v-hover>
-                    <v-card slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
+                    <v-card slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`" @click.native="viewProduct(item)">
                         <v-img :src="item.full_image" aspect-ratio="2"></v-img>
                         <v-card-title primary-title>
-                            <div>
-                                <h3 class="headline mb-0">{{item.name}}</h3>
-                                <div> {{item.description}} </div>
-                            </div>
+                            
+                            <v-layout row wrap>
+                                <v-flex lg12>
+                                    <h3 class="headline mb-0">{{item.name}}</h3>
+                                </v-flex>
+                                <v-flex lg12>
+                                    <div class="text-truncate"> {{item.description}} </div>
+                                </v-flex>
+                            </v-layout>
+                           
                         </v-card-title>
                         <v-card-text>
                             ₱{{item.price}}
@@ -28,13 +34,17 @@
           </v-flex>
             <v-flex lg4 md6 sm6 xs12 px-3 my-3 v-for="item in components" :key="item.name">
                 <v-hover>
-                    <v-card slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
+                    <v-card @click.native="viewProduct(item)" slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
                         <v-img :src="item.full_image" aspect-ratio="2"></v-img>
                         <v-card-title primary-title>
-                            <div>
-                                <h3 class="headline mb-0">{{item.name}}</h3>
-                                <div> {{item.description}} </div>
-                            </div>
+                            <v-layout row wrap>
+                                <v-flex lg12>
+                                    <h3 class="headline mb-0">{{item.name}}</h3>
+                                </v-flex>
+                                <v-flex lg12>
+                                    <div class="text-truncate"> {{item.description}} </div>
+                                </v-flex>
+                            </v-layout>
                         </v-card-title>
                         <v-card-text>
                             ₱{{item.price}}
@@ -50,13 +60,19 @@
           </v-flex>
             <v-flex lg4 md6 sm6 xs12 px-3 my-3 v-for="item in laptops" :key="item.name">
                 <v-hover>
-                    <v-card slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
+                    <v-card @click.native="viewProduct(item)" slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
                         <v-img :src="item.full_image" aspect-ratio="2"></v-img>
                         <v-card-title primary-title>
-                            <div>
-                                <h3 class="headline mb-0">{{item.name}}</h3>
-                                <div> {{item.description}} </div>
-                            </div>
+                           
+                            <v-layout row wrap>
+                                <v-flex lg12>
+                                    <h3 class="headline mb-0">{{item.name}}</h3>
+                                </v-flex>
+                                <v-flex lg12>
+                                    <div class="text-truncate"> {{item.description}} </div>
+                                </v-flex>
+                            </v-layout>
+                            
                         </v-card-title>
                         <v-card-text>
                             ₱{{item.price}}
@@ -72,13 +88,18 @@
           </v-flex>
             <v-flex lg4 md6 sm6 xs12 px-3 my-3 v-for="item in peripherals" :key="item.name">
                 <v-hover>
-                    <v-card slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
+                    <v-card @click.native="viewProduct(item)" slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
                         <v-img :src="item.full_image" aspect-ratio="2"></v-img>
                         <v-card-title primary-title>
-                            <div>
-                                <h3 class="headline mb-0">{{item.name}}</h3>
-                                <div> {{item.description}} </div>
-                            </div>
+                            <v-layout row wrap>
+                                <v-flex lg12>
+                                    <h3 class="headline mb-0">{{item.name}}</h3>
+                                </v-flex>
+                                <v-flex lg12>
+                                    <div class="text-truncate"> {{item.description}} </div>
+                                </v-flex>
+                            </v-layout>
+      
                         </v-card-title>
                         <v-card-text>
                             ₱{{item.price}}
@@ -115,6 +136,13 @@ import axios from 'axios';
                     this.laptops = response.data.category_3
                     this.peripherals = response.data.category_4
                 })
+      },
+      methods: {
+          viewProduct(item) {
+              this.$router.push({path: '/product/preview'})
+              this.$store.dispatch('selectProduct', item)
+              console.log(this.$router.currentRoute.path)
+          }
       }
   }
 </script>

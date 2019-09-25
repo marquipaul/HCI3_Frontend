@@ -1,8 +1,14 @@
 export default {
     loggedIn(state) {
         return state.token != null
-      },
-      retrieveProducts(state){
+    },
+    retrieveSelectedProduct(state){
+        return state.selected_product
+    },
+    selected(state){
+        return state.selected_product ? true : false
+    },
+    retrieveProducts(state){
         return state.products
     },
     retrieveCategories(state){
@@ -10,5 +16,8 @@ export default {
     },
     retrieveBrands(state){
         return state.brands
+    },
+    getCart(state){
+        return state.cart
     },
 }

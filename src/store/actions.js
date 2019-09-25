@@ -117,6 +117,30 @@ export default {
                 .then((response) => {
                     context.commit('retrieveBrands' , response.data)
                 })
+        },
+
+        selectProduct(context, payload) {
+          context.commit('assignSelectedProduct' , JSON.stringify(payload))
+          localStorage.setItem('selectedProduct', JSON.stringify(payload))
+        },
+        removeSelected(context) {
+          context.commit('removeSelected')
+          localStorage.removeItem('selectedProduct')
+        },
+        addToCart(context, product) {
+          var products = []
+          products = JSON.parse(context.state.cart)
+          products.push(product)
+          localStorage.setItem('cartProducts', JSON.stringify(products))
+
+          context.state.cart = JSON.stringify(products)
+        },
+        removeToCart(context, index) {
+          var products = []
+          products = JSON.parse(context.state.cart)
+          products.splice(index, 1)
+          localStorage.setItem('cartProducts', JSON.stringify(products))
+
+          context.state.cart = JSON.stringify(products)
         }
-            
 }
