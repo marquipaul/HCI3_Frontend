@@ -32,5 +32,6 @@ export default {
     },
     removeSelected(state){
         state.selected_product = null
-    }
+    },
+    
 }

@@ -142,5 +142,21 @@ export default {
           localStorage.setItem('cartProducts', JSON.stringify(products))
 
           context.state.cart = JSON.stringify(products)
-        }
+        },
+
+        checkout(context, payload) {
+          localStorage.setItem('cartProducts', JSON.stringify(payload))
+          context.state.cart = JSON.stringify(payload)
+        },
+        addOrder(context, credentials){
+          return new Promise((resolve, reject) => {
+              axios.post('/api/order', credentials)
+              .then(response => {
+                resolve(response)
+              })
+              .catch(error => {
+                  reject(error)
+              })
+            })
+          },
 }

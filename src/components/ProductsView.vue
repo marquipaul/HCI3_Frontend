@@ -6,8 +6,8 @@
           </v-flex>
             <v-flex lg4 md6 sm6 xs12 px-3 my-3 v-for="item in business" :key="item.name" >
                 <v-hover>
-                    <v-card slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`" @click.native="viewProduct(item)">
-                        <v-img :src="item.full_image" aspect-ratio="2"></v-img>
+                    <v-card slot-scope="{ hover }" :class="`clickable elevation-${hover ? 20 : 10}`">
+                        <v-img :src="item.full_image" aspect-ratio="2" @click.native="viewProduct(item)"></v-img>
                         <v-card-title primary-title>
                             
                             <v-layout row wrap>
@@ -20,9 +20,15 @@
                             </v-layout>
                            
                         </v-card-title>
-                        <v-card-text>
+                        
+                        <v-card-actions>
                             ₱{{item.price}}
-                        </v-card-text>
+                            <!-- <div class="flex-grow-1"></div> -->
+                            <!-- <v-spacer></v-spacer>
+                            <v-btn @click="addToCard(item)" :disabled="validateAdd" icon>
+                                <v-icon>add_shopping_cart</v-icon>
+                            </v-btn> -->
+                            </v-card-actions>
                     </v-card>
                 </v-hover>
             </v-flex>
@@ -103,6 +109,8 @@
                         </v-card-title>
                         <v-card-text>
                             ₱{{item.price}}
+                            <!-- <v-spacer></v-spacer>
+                            <v-btn @click="addToCard(item)" :disabled="validateAdd" fab color="success"> <v-icon>cart</v-icon> </v-btn> -->
                         </v-card-text>
                     </v-card>
                 </v-hover>
@@ -142,8 +150,36 @@ import axios from 'axios';
               this.$router.push({path: '/product/preview'})
               this.$store.dispatch('selectProduct', item)
               console.log(this.$router.currentRoute.path)
-          }
-      }
+          },
+          addToCard(item) {
+            var product = {
+                product_id: item.id,
+                full_image: item.full_image,
+                name: item.name,
+                price: item.price,
+                quantity: this.quantity
+            }
+            this.$store.dispatch('addToCart', product)
+        },
+      },
+    //   computed: {
+    //     selectedProduct() {
+    //         return JSON.parse(this.$store.getters.retrieveSelectedProduct) 
+    //     },
+    //     getCart() {
+    //         return JSON.parse(this.$store.getters.getCart)
+    //     },
+    //     validateAdd() {
+    //         return JSON.parse(this.$store.getters.getCart).some(product => product.product_id === JSON.parse(this.$store.getters.retrieveSelectedProduct).id)
+    //     },
+    //     validateQuantity() {
+    //         if (this.quantity > 0) {
+    //             return false
+    //         } else {
+    //             return true
+    //         }
+    //     }
+    // }
   }
 </script>
 

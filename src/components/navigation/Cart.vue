@@ -8,9 +8,7 @@
     <template v-slot:activator="{ on }">
         
             <v-btn flat icon v-on="on">
-                <v-badge color="blue-grey darken-3 white--text"
-                   
-                    left>
+                <v-badge color="blue-grey darken-3 white--text" left>
                     <template v-slot:badge>{{products.length}}</template>
                     <v-icon>shopping_cart</v-icon>
                 </v-badge>
@@ -69,7 +67,7 @@
         </v-list>
         <v-divider></v-divider>
         <v-card-actions>
-        <v-btn :disabled="products==0" block color="blue-grey darken-3 white--text" large>Checkout</v-btn>
+        <v-btn @click="checkout" :disabled="products==0" block color="blue-grey darken-3 white--text" large>Checkout</v-btn>
         </v-card-actions>
     </v-card>
     </v-menu>
@@ -85,10 +83,22 @@ export default {
     created() {
         //this.orderedProducts = this.products
     },
+    watch: {
+        orderedProducts: {
+            handler() {
+                this.$store.dispatch('checkout', this.orderedProducts)
+            },
+            deep: true
+        }
+    },
     methods: {
         removeItem(index) {
             this.$store.dispatch('removeToCart', index)
             this.orderedProducts.splice(index, 1)
+        },
+        checkout() {
+            this.$store.dispatch('checkout', this.orderedProducts)
+            window.open(`http://${window.location.hostname}:8080/checkout`, "_blank");
         }
     },
     computed: {

@@ -37,8 +37,9 @@ Vue.use(VueScrollTo, {
 // });
 
 
-axios.defaults.baseURL = 'http://hci3-project.test/'
-//axios.defaults.baseURL = 'http://192.168.31.24:8000/'
+//axios.defaults.baseURL = 'http://hci3-project.test/'
+axios.defaults.baseURL = 'http://localhost:8000/'
+//axios.defaults.baseURL = 'http://192.168.31.24:8000/ `http://${window.location.hostname}/checkout`'
 
 
 initialize(store, router, axios);
